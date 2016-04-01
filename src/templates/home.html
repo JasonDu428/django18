@@ -1,0 +1,29 @@
+<!--inherets from base.html-->
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{%block head_title%}Welcome | {{block.super}} {% endblock %}
+<!-- Main component for a primary marketing message or call to action -->
+{% block Jumbotron %}
+{{block.super}}
+Hello
+{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-sm-6 col-xs-3">
+        <h1>{{title}}</h1>
+
+        {{ user }}
+
+
+        <form method='POST' action =''> {% csrf_token %}
+            {{form|crispy}}
+            <input class = 'btn btn-primary' type= 'submit' value = 'Sign Up' />
+            <!--<input type ='text'>-->
+            <!--<input>-->
+
+        </form>
+  </div>
+</div>
+{% endblock %}
