@@ -14,9 +14,12 @@
     <title>{%block head_title%}MVP Landing{% endblock %} </title>
 
     {% include 'head_css.html' %}
+      <style>
+        {% block style %}
+        {% endblock %}
+      </style>
 
   </head>
-
   <body>
 
   {% include 'navbar.html' %}
@@ -26,21 +29,13 @@
 
     <div class="container">
     {% block Jumbotron %}
-      <div class="jumbotron">
-    <h1>Navbar example</h1>
-    <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
-        <p>To see the difference between static and fixed top navbars, just scroll.</p>
-        <p>
-          <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs &raquo;</a>
-        </p>
-      </div>
+
     {% endblock %}
 
     {% block content %}
     {% endblock %}
 
     </div> <!-- /container -->
-
     {% include "javascript.html" %}
   </body>
 </html>

@@ -9,7 +9,7 @@ def home(request):
     title = 'Welcome'
     form = SignUpForm(request.POST or None)
     context = {
-        "template_title": title,
+        "title": title,
         "form": form
     }
     # if request.user.is_authenticated():
@@ -32,6 +32,8 @@ def home(request):
     return render(request, 'home.html', context)
 
 def contact(request):
+    title = 'Contact Us'
+    title_align_center= True
     form = ContactForm(request.POST or None)
     if form.is_valid():
 
@@ -61,5 +63,7 @@ def contact(request):
 
     context= {
         "form": form,
+        "title": title,
+        "title_align_center": title_align_center,
     }
     return render(request, "forms.html", context)

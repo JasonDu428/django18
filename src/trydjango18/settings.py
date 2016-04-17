@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'django.contrib.sites',
+    'registration',
     'crispy_forms',
 
     'newsletter'
@@ -148,4 +150,12 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'   #change profile picture, upload pictures
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_in_env","media_root") #where to upload files. sent here from users
 
+#add attributes here
 CRISPY_TEMPLATE_PACK ='bootstrap3'
+
+#for Auth
+ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window; you may, of course, use a different value.
+REGISTRATION_AUTO_LOGIN = True # Automatically log the user in.
+
+SITE_ID = 1
+LOGIN_REDIRECT_URL ='/' #'/profile/'
