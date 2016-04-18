@@ -3,10 +3,11 @@ from django.conf import settings
 
 from django.shortcuts import render
 from .forms import SignUpForm, ContactForm
+from .models import SignUp
 # Create your views here.
 def home(request):
 
-    title = 'Welcome'
+    title = 'Sign Up Now'
     form = SignUpForm(request.POST or None)
     context = {
         "title": title,
@@ -28,6 +29,16 @@ def home(request):
         context = {
             "title": "Thank you"
         }
+    if request.user.is_authenticated() and request.user.is_staff:
+         # print(SignUp.objects.all())
+         # for instance in SignUp.objects.all():
+         #     print (instance.full_name)
+
+         queryset= SignUp.objects.all().order_by('-timestamp').filter(full_name__icontains="a")
+         print(SignUp.objects.all().order_by('-timestamp').filter(full_name__icontains="a").count())
+         context ={
+             "queryset":queryset
+         }
 
     return render(request, 'home.html', context)
 

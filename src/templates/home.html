@@ -1,18 +1,29 @@
 <!--inherets from base.html-->
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
+{% load staticfiles %}
 
 {%block head_title%}Welcome | {{block.super}} {% endblock %}
 <!-- Main component for a primary marketing message or call to action -->
 
 <style>
     {% block style %}
+    .navbar-static-top{
 
+    margin-bottom: 0px !important;
+    }
+    .jumbotron{
+    background-color:#21CED6;
+    color:#FFFFFF;
+    }
     {% endblock %}
 </style>
 
 {% block Jumbotron  %}
 <div class="jumbotron">
+    <div class="container">
+
+
 <div class="row">
 <div class='col-sm-6'>
 <h1>Try Django 1.8</h1>
@@ -20,15 +31,29 @@
 <p> <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">Join Us &raquo;</a>
 </p>
 </div>
-    <div class='col-sm-6' style="background-color:black; height:300px;">
+    <div class='col-sm-6'>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/afrwtA_Bfc8" frameborder="0" allowfullscreen></iframe>
         </div>
 </div>
 </div>
-
-
+</div>
 {% endblock %}
 
+
 {% block content %}
+{% if request.user.is_authenticated %}
+{{queryset}}
+    <table class='table'>
+    {% for instance in queryset %}
+        <tr><td>{{forloop.counter}}</td><td>{{instance.email}}</td><td> {{ instance.full_name}} </td> <td> {{ instance.timestamp|timesince}} ago </td></tr>
+         {if instance.email =="fdaf@gmail.com" %}
+        <tr><td>is equal</td></tr>
+
+        {% endfor %}
+    </table>
+
+
+{% else %}
 <div class="row">
   <div class="col-sm-3 pull-right">
 
@@ -45,15 +70,28 @@
 
     <div class='col-sm-3'>
         <p class='lead text-align-center'> Built with Django &amp; Bootstrap</p>
+            <img src='{% static "img/ker1.jpg" %}' class='img-responsive' />
     </div>
 
      <div class='col-sm-3'>
-        <p class='lead text-align-center'> Created for Starters of all kinds.</p>
+        <p class='lead text-align-center'><i class="fa fa-sign-in fa-5x fa-spin" aria-hidden="true"></i>
+            </br>
+            Created for Starters of all kinds.</p>
+
     </div>
 
-    <div class='col-sm-3'>
-        <p class='lead text-align-center'> Always Open Source</p>
+    <div class='col-sm-3' style='color:purple;'>
+        <p class='lead text-align-center'> Always Open Source
+        </br>
+            <i class="fa fa-cog fa-spin fa-3x fa-fw margin-bottom"></i>
+            <span class="sr-only">Loading...</span>
+        </p>
+        <span class="fa-stack fa-lg">
+        <i class="fa fa-cog fa-stack-2x fa-spin"></i>
+        <i style='color:red;' class="fa fa-flag fa-stack-1x fa-inverse"></i>
+        </span>
     </div>
 
 </div>
+{% endif %}
 {% endblock %}
