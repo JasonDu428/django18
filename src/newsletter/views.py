@@ -52,7 +52,6 @@ def contact(request):
         #     print (key)
         #     print (form.cleaned_data.get(key))
 
-
         form_email = form.cleaned_data.get("email")
         form_message = form.cleaned_data.get("message")
         form_full_name = form.cleaned_data.get("full_name")
